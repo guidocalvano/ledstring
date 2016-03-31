@@ -1,7 +1,7 @@
 FireControl = require('./FireControl');
 
-var width     = 10;
-var height    =  5;
-var frameRate = 24;
-
-var fc = new FireControl().init(width, height, frameRate);
+var width     = 6;
+var height    = 8;
+var frameRate = 8.5;
+var skipFirstNPixels = 2;
+var fc = new FireControl().init(width, height, frameRate, skipFirstNPixels);

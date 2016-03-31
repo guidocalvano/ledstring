@@ -1,8 +1,10 @@
-FireView() {};
+function FireView() {};
 
 FireView.prototype = Object.create({}, {
 	init: {value: function(gradient) {
 		this.gradient = gradient;
+
+		return this;
 	}},
 	render: {value: function(map, screen) {
 		for (var x = 0; x < map.length;    ++x)
@@ -12,26 +14,32 @@ FireView.prototype = Object.create({}, {
 		}	
 	}},
 	getGradientColor: {value: function(gradientValue) {
+
 		var gradientIndex = Math.floor(this.gradient.length * gradientValue);
-		if (gradientIndex >= this.gradient.length) gradientIndex = this.gradientIndex - 1;
+		if (gradientIndex >= this.gradient.length) gradientIndex = this.gradient.length - 1;
+		if (gradientIndex < 0) gradientIndex = 0;
+
 
 		return this.gradient[gradientIndex];
 	}},
 	createOrangeGradient: {value: function () {
 		var gradient = Array(256);
 
-		for (var i = 0; i < gradient.length; ++1) {
-			var gradientValue = i / gradient.length;
+		for (var i = 0; i < gradient.length; ++i) {
+			var gradientValue = 1 - i / gradient.length;
 
-			var red   = Math.floor( this.sigmoid(4 - gradientValue *  8) * 255 );
-			var green = Math.floor( this.sigmoid(4 - gradientValue * 16) * 255 );
-			var blue  = Math.floor( this.sigmoid(4 - gradientValue * 32) * 255 );
+			var red   = Math.floor( this.sigmoid(4 - gradientValue *  5) * 255 );
+			var green = Math.floor( this.sigmoid(4 - gradientValue * 10.5) * 255 );
+			var blue  = Math.floor( this.sigmoid(4 - gradientValue * 40) * 200 );
 
-			gradient[i] = [];
+			gradient[i] = [red, green, blue];
 		}
+		return gradient;
 	}},
 	sigmoid: {value: function (v) {
 		// The sigmoid curve has an S like shape: en.wikipedia.org/wiki/Sigmoid_function
 		return 1 / (1 + Math.exp(-v));
 	}}
 });
+
+module.exports = FireView;

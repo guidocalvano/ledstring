@@ -7,22 +7,30 @@ FireCylinderModel.prototype = Object.create({}, {
 		this.map              = this.createMap(width, height);
 		this.extinctionFactor = extinctionFactor;
 
+		for (var x = 0; x < this.width; ++x) {
+			this.map[x][0] = .3 + .7 * Math.random() ;
+		}
+
 		return this;
 	}},
 	timeCycle: {value: function () {
 		var newMap = this.createMap(this.width, this.height);
 
-		for (var x = 0; x < this.width; ++x)
-			newMap[x, 0] = Math.random();
+		for (var x = 0; x < this.width; ++x) {
+			newMap[x][0] = .1 * (.4 + .6 * Math.random()) + 
+						   .7 * this.map[x][0] + 
+						   .1 * this.map[(this.width + x - 1) % this.width][0] + 
+						   .1 * this.map[(x + 1) % this.width][0];
+		}
 
 		for (var y = 0; y < (this.height - 1); ++y)
 		for (var x = 0; x <  this.width      ; ++x) {
 
-			left   = this.map[(this.width + x - 1) % this.width][y];
-			center = this.map[x][y];
-			right  = this.map[(             x + 1) % this.width][y];
+			left   = 1 * this.map[(this.width + x - 1) % this.width][y];
+			center = 1 * this.map[x][y];
+			right  = 1 * this.map[(             x + 1) % this.width][y];
 
-			newMap[x][y + 1] = this.extinctionFactor * (left + center + right) / 3;
+			newMap[x][y + 1] = this.extinctionFactor * (left * .32 + center * .36 + right * .32) - Math.random() * .4;
 		}
 		this.map = newMap;
 
@@ -34,8 +42,19 @@ FireCylinderModel.prototype = Object.create({}, {
 		for (var x = 0; x < width; ++x) {
 			map[x] = Array(height);
 
-			for (var y = 0: y < height; ++y)
+			for (var y = 0; y < height; ++y)
 				map[x][y] = 0;
 		};
+
+		return map;
+	}},
+	testPrint: {value: function(){
+		console.log('frame');
+		for (var x = 0; x < this.map.length; ++x){
+			console.log(this.map[x]);
+		}
+		console.log('end frame');
 	}}
 });
+
+module.exports = FireCylinderModel;
