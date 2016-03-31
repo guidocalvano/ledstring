@@ -17,8 +17,8 @@ FireCylinderModel.prototype = Object.create({}, {
 		var newMap = this.createMap(this.width, this.height);
 
 		for (var x = 0; x < this.width; ++x) {
-			newMap[x][0] = .1 * (.4 + .6 * Math.random()) + 
-						   .7 * this.map[x][0] + 
+			newMap[x][0] = .15 * (.4 + .6 * Math.random()) + 
+						   .65 * this.map[x][0] + 
 						   .1 * this.map[(this.width + x - 1) % this.width][0] + 
 						   .1 * this.map[(x + 1) % this.width][0];
 		}
