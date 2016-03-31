@@ -6,7 +6,7 @@ leds.connect(LED_COUNT);
 
 activeLedIndex = 0;
 
-setinterval(function() {
+setInterval(function() {
 		activeLedIndex = (activeLedIndex + 1) % LED_COUNT;
 
 		for (var i = 0; i < LED_COUNT; ++i) {
