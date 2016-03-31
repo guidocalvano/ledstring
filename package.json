@@ -1,7 +1,7 @@
 {
-  "name": "pov-game-console",
+  "name": "ledstring",
   "version": "0.0.0",
-  "description": "infrastructure for playing games on a 3D pov display",
+  "description": "playing around with a ledstring",
   "main": "server.js",
   "dependencies": {
     "rpi-ws2801": "0.0.4"
@@ -12,20 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:guidocalvano/pov-game-console.git"
+    "url": "git@github.com:guidocalvano/ledstring.git"
   },
   "keywords": [
-    "pov",
-    "persistency",
-    "of",
-    "vision",
-    "game",
-    "console"
   ],
   "author": "Guido Sales Calvano",
   "license": "all rights reserved",
   "bugs": {
-    "url": "https://github.com/guidocalvano/pov-game-console/issues"
+    "url": "https://github.com/guidocalvano/ledstring/issues"
   },
-  "homepage": "https://github.com/guidocalvano/pov-game-console"
+  "homepage": "https://github.com/guidocalvano/ledstring-console"
 }
