@@ -10,7 +10,7 @@ FireControl.prototype = Object.create({}, {
 			skipFirstNPixels = 0;
 
 
-		this.model     = new FireCylinderModel().init(width, height, .5);
+		this.model     = new FireCylinderModel().init(width, height, .97);
 		this.screen    = new Screen().init(width, height, skipFirstNPixels);
 		this.view      = new FireView().init(FireView.prototype.createOrangeGradient());
 

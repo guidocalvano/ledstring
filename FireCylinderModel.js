@@ -30,7 +30,7 @@ FireCylinderModel.prototype = Object.create({}, {
 			center = 1 * this.map[x][y];
 			right  = 1 * this.map[(             x + 1) % this.width][y];
 
-			newMap[x][y + 1] = this.extinctionFactor * (left * .32 + center * .36 + right * .32) - Math.random() * .4;
+			newMap[x][y + 1] = this.extinctionFactor * (left * .32 + center * .36 + right * .32) - Math.random() * .12;
 		}
 		this.map = newMap;
 
