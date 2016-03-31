@@ -16,5 +16,5 @@ setInterval(function() {
 			leds.setColor(i, [red,0,0]); 
 		}
 		leds.update();
-
-}, 500);
+		console.log('activeLedIndex = ' + activeLedIndex);
+}, 3000);
