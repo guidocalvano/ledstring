@@ -1,0 +1,31 @@
+{
+  "name": "pov-game-console",
+  "version": "0.0.0",
+  "description": "infrastructure for playing games on a 3D pov display",
+  "main": "server.js",
+  "dependencies": {
+    "rpi-ws2801": "0.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:guidocalvano/pov-game-console.git"
+  },
+  "keywords": [
+    "pov",
+    "persistency",
+    "of",
+    "vision",
+    "game",
+    "console"
+  ],
+  "author": "Guido Sales Calvano",
+  "license": "all rights reserved",
+  "bugs": {
+    "url": "https://github.com/guidocalvano/pov-game-console/issues"
+  },
+  "homepage": "https://github.com/guidocalvano/pov-game-console"
+}
