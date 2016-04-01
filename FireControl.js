@@ -15,7 +15,7 @@ FireControl.prototype = Object.create({}, {
 		this.view      = new FireView().init(FireView.prototype.createOrangeGradient());
 
 		this.ledString = require("rpi-ws2801");
-		this.ledString.connect(width * height);
+		this.ledString.connect(width * height + skipFirstNPixels);
 
 		setInterval(this.timeCycle.bind(this), 1000 / frameRate);
 
