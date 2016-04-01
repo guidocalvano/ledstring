@@ -5,19 +5,19 @@ var Screen            = require('./Screen');
 function FireControl() {}
 
 FireControl.prototype = Object.create({}, {
-	init: {value: function (width, height, frameRate, skipFirstNPixels) {
+	init: {value: function (width, height, targetShiftRate, skipFirstNPixels) {
 		if (skipFirstNPixels === undefined)
 			skipFirstNPixels = 0;
 
 
-		this.model     = new FireCylinderModel().init(width, height, .97);
+		this.model     = new FireCylinderModel().init(width, height, .97, targetShiftRate);
 		this.screen    = new Screen().init(width, height, skipFirstNPixels);
 		this.view      = new FireView().init(FireView.prototype.createOrangeGradient());
 
 		this.ledString = require("rpi-ws2801");
 		this.ledString.connect(width * height + skipFirstNPixels);
 
-		setInterval(this.timeCycle.bind(this), 1000 / frameRate);
+		setInterval(this.timeCycle.bind(this), 1000 / 60);
 
 		return this;
 	}},
