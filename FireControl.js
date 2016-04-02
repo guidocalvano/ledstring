@@ -45,11 +45,11 @@ FireControl.prototype = Object.create({}, {
   		}.bind(this));
 
 		app.get('/', function(req, res){
-  			res.sendfile(__dirname + '/public/webInterface.html');
+  			res.sendFile(__dirname + '/public/webInterface.html');
 		}.bind(this));
 
 		app.get('/socket.io.js', function(req, res){
-  			res.sendfile(__dirname + '/public/socket.io.js');
+  			res.sendFile(__dirname + '/public/socket.io.js');
 		}.bind(this));
 
 		app.listen(3000);
