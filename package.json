@@ -4,7 +4,9 @@
   "description": "playing around with a ledstring",
   "main": "server.js",
   "dependencies": {
-    "rpi-ws2801": "0.0.4"
+    "express": "^4.13.4",
+    "rpi-ws2801": "0.0.4",
+    "socket.io": "^1.4.5"
   },
   "devDependencies": {},
   "scripts": {
@@ -14,8 +16,7 @@
     "type": "git",
     "url": "git@github.com:guidocalvano/ledstring.git"
   },
-  "keywords": [
-  ],
+  "keywords": [],
   "author": "Guido Sales Calvano",
   "license": "all rights reserved",
   "bugs": {

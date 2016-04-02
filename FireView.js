@@ -25,14 +25,18 @@ FireView.prototype = Object.create({}, {
 	createOrangeGradient: {value: function () {
 		var gradient = Array(256);
 
+		var dimmingEnd = .65;
+		var dimmingRange = 1 - dimmingEnd;
+
 		for (var i = 0; i < gradient.length; ++i) {
 			var gradientValue = 1 - i / gradient.length;
 
-			var dimming = .65;
+			var dimming = dimmingEnd + 2 * Math.exp(-gradientValue);
 
-			var red   = Math.floor( dimming * this.sigmoid(4 - gradientValue *  7.2) * 255 );
-			var green = Math.floor( dimming * this.sigmoid(4 - gradientValue * 13.8) * 255 );
-			var blue  = Math.floor( dimming * this.sigmoid(4 - gradientValue * 40) * 200 );
+			var red   = Math.floor( dimming * (this.sigmoid(4 - gradientValue *  7.2) * .5 +  this.sigmoid(4 - gradientValue * 14.3) * .5 ) * 255 );
+			var green = Math.floor( .865 * dimming *  this.sigmoid(4 - gradientValue * 14.3) * 255 );
+			// var blue  = Math.floor( dimming * this.sigmoid(4 - gradientValue * 45) * 255 );
+			var blue = 0;
 
 			gradient[i] = [red, green, blue];
 		}

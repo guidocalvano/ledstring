@@ -17,4 +17,4 @@ setInterval(function() {
 		}
 		leds.update();
 		console.log('activeLedIndex = ' + activeLedIndex);
-}, 3000);
+}, 500);

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=320, initial-scale=1, maximum-scale=1, minimum-scale=1">
+<script src="https://code.jquery.com/jquery-2.2.2.min.js"> </script>
+<script src="/socket.io.js"></script>
+<script>
+  var socket = io.connect('raspberrypi.fritz.box');
+  socket.on('newLightIntensity', function (data) {
+    console.log('receiving ' + JSON.stringify(data));
+    document.getElementById('lightIntensityDimmer').value = parseFloat(data);
+  });
+
+  function updateLightIntensity(value) {
+  	socket.emit('newLightIntensity', value);
+  	console.log('emmitting value' + value);
+  }
+
+</script>
+<style>
+body {
+    padding: 30px;
+    background-color: black;
+}
+input[type=range][orient=vertical] {
+    /*removes default webkit styles*/
+    -webkit-appearance: none;
+    -webkit-appearance: slider-vertical
+    writing-mode: bt-lr;
+    position: absolute;
+
+	transform: rotate(270deg);
+    -webkit-transform: rotate(270deg);
+
+    /*fix for FF unable to apply focus style bug */
+    border: 1px solid transparent;
+    
+    /*required for proper track sizing in FF*/
+    width: 300px;
+
+    background-color: black;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    width: 300px;
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: purple;
+    margin-top: -4px;
+}
+input[type=range]:focus {
+    outline: none;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #ccc;
+}
+
+input[type=range]::-moz-range-track {
+    width: 300px;
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+}
+input[type=range]::-moz-range-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: purple;
+}
+
+/*hide the outline behind the border*/
+input[type=range]:-moz-focusring{
+    outline: 1px solid transparent;
+    outline-offset: -1px;
+}
+
+input[type=range]::-ms-track {
+    width: 300px;
+    height: 5px;
+    
+    /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+    background: transparent;
+    
+    /*leave room for the larger thumb to overflow with a transparent border */
+    border-color: transparent;
+    border-width: 6px 0;
+
+    /*remove default tick marks*/
+    color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+    background: #777;
+    border-radius: 10px;
+}
+input[type=range]::-ms-fill-upper {
+    background: #ddd;
+    border-radius: 10px;
+}
+input[type=range]::-ms-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: purple;
+}
+input[type=range]:focus::-ms-fill-lower {
+    background: #888;
+}
+input[type=range]:focus::-ms-fill-upper {
+    background: #ccc;
+}
+</style>
+</head>
+<body>
+<center>
+<p style="color: white; font-family: helvetica, arial; font-size: 24px">
+	Intensity
+</p>
+</center>
+
+<input id="lightIntensityDimmer" type="range" orient="vertical" style="width:255px; height:80px; margin-top:130px" min="0" max="1" step=".05"  oninput="updateLightIntensity(this.value)"/>
+</body>
+</html>
