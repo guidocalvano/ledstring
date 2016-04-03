@@ -33,8 +33,9 @@ FireView.prototype = Object.create({}, {
 
 			var dimming = dimmingEnd + 2 * Math.exp(-gradientValue);
 
-			var red   = Math.floor( dimming * (this.sigmoid(4 - gradientValue *  7.2) * .5 +  this.sigmoid(4 - gradientValue * 14.3) * .5 ) * 255 );
-			var green = Math.floor( .865 * dimming *  this.sigmoid(4 - gradientValue * 14.3) * 255 );
+			var red   = Math.floor( dimming * (1 - ( 1 - .8 * this.sigmoid(4 - gradientValue *  7.2)) * (1 - this.sigmoid(4 - gradientValue * 14.3)) ) * 255 );
+
+			var green = Math.floor( .6 * dimming *  this.sigmoid(4 - gradientValue * 12.3) * 255 );
 			// var blue  = Math.floor( dimming * this.sigmoid(4 - gradientValue * 45) * 255 );
 			var blue = 0;
 
