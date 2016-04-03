@@ -17,7 +17,15 @@ FireControl.prototype = Object.create({}, {
 		this.screen    = new Screen().init(width, height, skipFirstNPixels);
 		this.view      = new FireView().init(FireView.prototype.createOrangeGradient());
 
-		this.lightIntensity = 1;
+		this.lightIntensity = 0;
+
+		var lightSwelling = 0;
+		var swellLight = setInterval(function () {
+			lightSwelling += .25 * 1/20;
+			this.lightIntensity = lightSwelling;
+			if (this.lightIntensity > 1) this.lightIntensity = 1;
+			if (lightSwelling >= 1) clearInterval(swellLight);
+		}.bind(this), 50);
 
 		this.ledString = require("rpi-ws2801");
 		this.ledString.connect(width * height + skipFirstNPixels);
